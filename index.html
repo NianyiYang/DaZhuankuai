@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>打砖块游戏</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+            touch-action: none;
+            position: relative;
+        }
+        canvas {
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: block;
+        }
+        #startButton {
+            position: absolute;
+            padding: 12px 24px;
+            font-size: 18px;
+            background: #0095DD;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #startButton:hover {
+            background: #0077b3;
+        }
+        .game-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <button id="startButton">开始游戏</button>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
