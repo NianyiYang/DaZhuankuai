@@ -16,13 +16,37 @@
             touch-action: none;
             position: relative;
         }
+
         canvas {
             background: #fff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             display: block;
         }
-        #startButton {
+
+        .game-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .controls-container {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* 简化隐藏样式 */
+        .controls-container.hidden {
+            display: none !important;
+        }
+
+        #startButton {
             padding: 12px 24px;
             font-size: 18px;
             background: #0095DD;
@@ -32,22 +56,95 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+
         #startButton:hover {
             background: #0077b3;
         }
-        .game-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        .speed-selector {
+            text-align: center;
+            width: auto;
+        }
+
+        .speed-selector label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        .speed-selector select {
+            padding: 8px 16px;
+            font-size: 16px;
+            border: 2px solid #0095DD;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .speed-selector select:focus {
+            border-color: #0077b3;
         }
     </style>
 </head>
 <body>
     <div class="game-container">
         <canvas id="gameCanvas"></canvas>
-        <button id="startButton">开始游戏</button>
+        <div class="controls-container">
+            <div class="speed-selector">
+                <label for="gameSpeed">选择游戏速度</label>
+                <select id="gameSpeed">
+                    <option value="0.8">慢速</option>
+                    <option value="1" selected>正常</option>
+                    <option value="1.2">快速</option>
+                </select>
+            </div>
+            <button id="startButton">开始游戏</button>
+        </div>
     </div>
     <script src="game.js"></script>
-</body>
+        <style>
+            /* 优化: 添加响应式设计，确保在不同设备上都有良好体验 */
+            @media (max-width: 768px) {
+                #startButton {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                }
+                
+                .speed-selector select {
+                    padding: 6px 12px;
+                    font-size: 14px;
+                }
+            }
+            
+            /* 优化: 添加游戏结束和胜利时的样式 */
+            .game-over-message {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                display: none;
+            }
+            
+            .game-over-message.visible {
+                display: block;
+            }
+            
+            /* 添加黄色砖块和掉落物的样式 */
+            .yellow-brick {
+                fill: #FFD700;
+            }
+            
+            .powerup {
+                fill: #FFD700;
+            }
+        </style>
+    </body>
 </html>
